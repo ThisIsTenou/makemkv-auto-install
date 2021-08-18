@@ -13,8 +13,8 @@ prefix="makemkv-$(date +"%s")"
 mkdir /tmp/$prefix
 apt-get update
 apt-get install -y build-essential pkg-config libc6-dev libssl-dev libexpat1-dev libavcodec-dev libgl1-mesa-dev qtbase5-dev zlib1g-dev nasm libfdk-aac-dev sed wget curl tar setcd
-wget -q --show-progress -O /tmp/$prefix/makemkv-bin.tar.gz https://www.makemkv.com/download/makemkv-bin-1.16.3.tar.gz
-wget -q --show-progress -O /tmp/$prefix/makemkv-oss.tar.gz https://www.makemkv.com/download/makemkv-oss-1.16.3.tar.gz
+wget -q --show-progress -O /tmp/$prefix/makemkv-bin.tar.gz https://www.makemkv.com/download/makemkv-bin-$version.tar.gz
+wget -q --show-progress -O /tmp/$prefix/makemkv-oss.tar.gz https://www.makemkv.com/download/makemkv-oss-$version.tar.gz
 wget -q --show-progress -O /tmp/$prefix/ffmpeg.tar.bz2 https://ffmpeg.org/releases/ffmpeg-snapshot.tar.bz2
 tar -xf /tmp/$prefix/ffmpeg.tar.bz2 -C /tmp/$prefix/
 tar -xf /tmp/$prefix/makemkv-oss.tar.gz -C /tmp/$prefix/
@@ -22,11 +22,11 @@ tar -xf /tmp/$prefix/makemkv-bin.tar.gz -C /tmp/$prefix/
 /tmp/$prefix/ffmpeg/configure --prefix=/tmp/$prefix/ffmpeg-temp --enable-static --disable-shared --enable-pic --enable-libfdk-aac
 cd /tmp/$prefix/ffmpeg
 make install
-cd /tmp/$prefix/makemkv-oss-1.16.3
+cd /tmp/$prefix/makemkv-oss-$version
 PKG_CONFIG_PATH=/tmp/$prefix/ffmpeg-temp/lib/pkgconfig ./configure
 make
 make install
-cd /tmp/$prefix/makemkv-bin-1.16.3
+cd /tmp/$prefix/makemkv-bin-$version
 make
 sudo make install
 mkdir -p /home/$SUDO_USER/.MakeMKV
