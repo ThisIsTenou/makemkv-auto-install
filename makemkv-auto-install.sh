@@ -1,5 +1,7 @@
 #!/bin/bash
 
+cd /tmp
+
 if [ "$USER" != root ] && [ "$SUDO_USER" != root ]; then
 	echo "This script needs to be executed with sudo!"
 	exit 1
